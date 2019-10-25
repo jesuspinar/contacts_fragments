@@ -3,15 +3,15 @@ package com.germangascon.fragments;
 import android.os.Bundle;
 import android.support.annotation.Nullable;
 import android.support.v4.app.Fragment;
+import android.support.v7.widget.LinearLayoutManager;
+import android.support.v7.widget.RecyclerView;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
-import android.widget.AdapterView;
-import android.widget.ListView;
 
 public class FragmentListado extends Fragment {
     private Contacto[] datos;
-    private ListView lstListado;
+    private RecyclerView rvListado;
     private IContactosListener listener;
 
     @Nullable
@@ -27,20 +27,17 @@ public class FragmentListado extends Fragment {
     @Override
     public void onActivityCreated(@Nullable Bundle savedInstanceState) {
         super.onActivityCreated(savedInstanceState);
-        lstListado = getView().findViewById(R.id.LstListado);
-        lstListado.setAdapter(new AdaptadorContactos(this, datos));
-        lstListado.setOnItemClickListener(new AdapterView.OnItemClickListener() {
-            @Override
-            public void onItemClick(AdapterView<?> adapterView, View view, int pos, long id) {
-                if(listener!=null) {
-                    listener.onContactoSeleccionado((Contacto)lstListado.getAdapter().getItem(pos));
-                }
-            }
-        });
+        rvListado = getView().findViewById(R.id.rvListado);
+        rvListado.setAdapter(new AdaptadorContactos(datos, listener));
+        rvListado.setLayoutManager(new LinearLayoutManager(getActivity(), LinearLayoutManager.VERTICAL, false));
     }
 
     public void setContactosListener(IContactosListener listener) {
         this.listener = listener;
+    }
+
+    public Contacto[] getDatos() {
+        return datos;
     }
 }
 

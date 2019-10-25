@@ -6,27 +6,27 @@ import android.support.v7.app.AppCompatActivity;
 
 public class MainActivity extends AppCompatActivity implements IContactosListener {
 
+    FragmentListado frgListado;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
 
-        FragmentListado frgListado = (FragmentListado)getSupportFragmentManager().findFragmentById(R.id.FrgListado);
-        //Si hemos utilizado la librería de soporte deberemos hacerlo de la siguiente forma:
-        //FragmentListado frgListado = (FragmentListado)getSupportFragmentManager().findFragmentById(R.id.FrgListado);
+        frgListado = (FragmentListado)getSupportFragmentManager().findFragmentById(R.id.FrgListado);
         frgListado.setContactosListener(this);
     }
 
     @Override
-    public void onContactoSeleccionado(Contacto c) {
+    public void onContactoSeleccionado(int position) {
         boolean hayDetalle = (getSupportFragmentManager().findFragmentById(R.id.FrgDetalle) != null);
+        Contacto contacto = frgListado.getDatos()[position];
         if(hayDetalle) {
-            ((FragmentDetalle)getSupportFragmentManager().findFragmentById(R.id.FrgDetalle)).mostrarDetalle(c);
+            FragmentDetalle frgDetalle = (FragmentDetalle)getSupportFragmentManager().findFragmentById(R.id.FrgDetalle);
+            frgDetalle.mostrarDetalle(contacto);
         } else {
             Intent i = new Intent(this, DetalleActivity.class);
-            i.putExtra(DetalleActivity.EXTRA_TEXTO, c);
+            i.putExtra(DetalleActivity.EXTRA_TEXTO, contacto);
             startActivity(i);
-
         }
     }
 }
