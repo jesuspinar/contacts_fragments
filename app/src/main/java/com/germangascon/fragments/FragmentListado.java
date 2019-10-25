@@ -1,8 +1,8 @@
 package com.germangascon.fragments;
 
-import android.app.Fragment;
 import android.os.Bundle;
 import android.support.annotation.Nullable;
+import android.support.v4.app.Fragment;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -27,7 +27,7 @@ public class FragmentListado extends Fragment {
     @Override
     public void onActivityCreated(@Nullable Bundle savedInstanceState) {
         super.onActivityCreated(savedInstanceState);
-        lstListado = (ListView)getView().findViewById(R.id.LstListado);
+        lstListado = getView().findViewById(R.id.LstListado);
         lstListado.setAdapter(new AdaptadorContactos(this, datos));
         lstListado.setOnItemClickListener(new AdapterView.OnItemClickListener() {
             @Override
