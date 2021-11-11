@@ -7,7 +7,7 @@
     android:layout_height="match_parent"
     tools:layout_editor_absoluteY="81dp">
 
-    <fragment
+    <androidx.fragment.app.FragmentContainerView
         android:id="@+id/FrgDetalle"
         android:name="com.germangascon.fragments.FragmentDetalle"
         android:layout_width="0dp"

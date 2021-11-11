@@ -6,14 +6,20 @@ import androidx.appcompat.app.AppCompatActivity;
 
 public class MainActivity extends AppCompatActivity implements IContactosListener {
 
-    FragmentListado frgListado;
+    private FragmentListado frgListado;
+
+    public MainActivity() {
+        super(R.layout.activity_main);
+    }
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_main);
-
-        frgListado = (FragmentListado)getSupportFragmentManager().findFragmentById(R.id.FrgListado);
-        frgListado.setContactosListener(this);
+        if(savedInstanceState == null) {
+            frgListado = (FragmentListado) getSupportFragmentManager().findFragmentById(R.id.FrgListado);
+            assert frgListado != null;
+            frgListado.setContactosListener(this);
+        }
     }
 
     @Override
@@ -22,6 +28,7 @@ public class MainActivity extends AppCompatActivity implements IContactosListene
         Contacto contacto = frgListado.getDatos()[position];
         if(hayDetalle) {
             FragmentDetalle frgDetalle = (FragmentDetalle)getSupportFragmentManager().findFragmentById(R.id.FrgDetalle);
+            assert frgDetalle != null;
             frgDetalle.mostrarDetalle(contacto);
         } else {
             Intent i = new Intent(this, DetalleActivity.class);

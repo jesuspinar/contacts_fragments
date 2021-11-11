@@ -2,11 +2,10 @@ package com.germangascon.fragments;
 
 
 import android.os.Bundle;
+import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
 import androidx.fragment.app.Fragment;
-import android.view.LayoutInflater;
 import android.view.View;
-import android.view.ViewGroup;
 import android.widget.TextView;
 
 public class FragmentDetalle extends Fragment {
@@ -18,25 +17,24 @@ public class FragmentDetalle extends Fragment {
     private TextView tvPhone1;
     private TextView tvPhone2;
     private TextView tvEmail;
-    private StringBuilder sb;
+    private final StringBuilder sb;
 
-    @Nullable
-    @Override
-    public View onCreateView(LayoutInflater inflater, @Nullable ViewGroup container, Bundle savedInstanceState) {
-        View layout = inflater.inflate(R.layout.fragment_detalle, container, false);
-
-        tvName = layout.findViewById(R.id.tvName);
-        tvSurnames = layout.findViewById(R.id.tvSurnames);
-        tvBirth = layout.findViewById(R.id.tvBirth);
-        tvCompany = layout.findViewById(R.id.tvCompany);
-        tvAddress = layout.findViewById(R.id.tvAddress);
-        tvPhone1 = layout.findViewById(R.id.tvPhone1);
-        tvPhone2 = layout.findViewById(R.id.tvPhone2);
-        tvEmail = layout.findViewById(R.id.tvEmail);
-
+    public FragmentDetalle() {
+        super(R.layout.fragment_detalle);
         sb = new StringBuilder();
+    }
 
-        return layout;
+    @Override
+    public void onViewCreated(@NonNull View view, @Nullable Bundle savedInstanceState) {
+        super.onViewCreated(view, savedInstanceState);
+        tvName = view.findViewById(R.id.tvName);
+        tvSurnames = view.findViewById(R.id.tvSurnames);
+        tvBirth = view.findViewById(R.id.tvBirth);
+        tvCompany = view.findViewById(R.id.tvCompany);
+        tvAddress = view.findViewById(R.id.tvAddress);
+        tvPhone1 = view.findViewById(R.id.tvPhone1);
+        tvPhone2 = view.findViewById(R.id.tvPhone2);
+        tvEmail = view.findViewById(R.id.tvEmail);
     }
 
     public void mostrarDetalle(Contacto contacto) {

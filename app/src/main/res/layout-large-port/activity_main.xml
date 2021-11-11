@@ -6,7 +6,7 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent">
 
-    <fragment
+    <androidx.fragment.app.FragmentContainerView
         android:id="@+id/FrgListado"
         android:name="com.germangascon.fragments.FragmentListado"
         android:layout_width="match_parent"
@@ -14,7 +14,7 @@
         android:layout_weight="40"
         tools:layout="@layout/fragment_listado" />
 
-    <fragment
+    <androidx.fragment.app.FragmentContainerView
         android:id="@+id/FrgDetalle"
         android:name="com.germangascon.fragments.FragmentDetalle"
         android:layout_width="match_parent"

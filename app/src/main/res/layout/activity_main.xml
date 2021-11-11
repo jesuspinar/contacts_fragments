@@ -7,9 +7,10 @@
     android:layout_height="match_parent"
     tools:context=".MainActivity">
 
-    <fragment
+    <androidx.fragment.app.FragmentContainerView
         android:id="@+id/FrgListado"
         android:name="com.germangascon.fragments.FragmentListado"
+        tools:layout="@layout/fragment_listado"
         android:layout_width="0dp"
         android:layout_height="0dp"
         android:layout_marginBottom="8dp"
@@ -22,5 +23,5 @@
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent"
-        tools:layout="@layout/fragment_listado" />
+         />
 </androidx.constraintlayout.widget.ConstraintLayout>

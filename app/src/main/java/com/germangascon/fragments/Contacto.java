@@ -3,7 +3,7 @@ package com.germangascon.fragments;
 import java.io.Serializable;
 
 public class Contacto implements Serializable {
-    private int id;
+    private final int id;
     private String name;
     private String firstSurname;
     private String secondSurname;

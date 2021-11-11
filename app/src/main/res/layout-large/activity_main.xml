@@ -7,7 +7,7 @@
     android:layout_height="match_parent"
     android:baselineAligned="false">
 
-    <fragment
+    <androidx.fragment.app.FragmentContainerView
         android:id="@+id/FrgListado"
         android:name="com.germangascon.fragments.FragmentListado"
         android:layout_width="0dp"
@@ -15,7 +15,7 @@
         android:layout_weight="30"
         tools:layout="@layout/fragment_listado" />
 
-    <fragment
+    <androidx.fragment.app.FragmentContainerView
         android:id="@+id/FrgDetalle"
         android:name="com.germangascon.fragments.FragmentDetalle"
         android:layout_width="0dp"
