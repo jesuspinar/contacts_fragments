@@ -1,7 +1,6 @@
 <?xml version="1.0" encoding="utf-8"?>
 <LinearLayout
     xmlns:android="http://schemas.android.com/apk/res/android"
-    xmlns:tools="http://schemas.android.com/tools"
     android:orientation="horizontal"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
@@ -9,17 +8,13 @@
 
     <androidx.fragment.app.FragmentContainerView
         android:id="@+id/FrgListado"
-        android:name="com.germangascon.fragments.FragmentListado"
         android:layout_width="0dp"
         android:layout_height="match_parent"
-        android:layout_weight="30"
-        tools:layout="@layout/fragment_listado" />
+        android:layout_weight="30" />
 
     <androidx.fragment.app.FragmentContainerView
         android:id="@+id/FrgDetalle"
-        android:name="com.germangascon.fragments.FragmentDetalle"
         android:layout_width="0dp"
         android:layout_height="match_parent"
-        android:layout_weight="70"
-        tools:layout="@layout/fragment_detalle" />
+        android:layout_weight="70" />
 </LinearLayout>

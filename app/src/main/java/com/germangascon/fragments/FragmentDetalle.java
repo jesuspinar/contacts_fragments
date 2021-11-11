@@ -9,6 +9,7 @@ import android.view.View;
 import android.widget.TextView;
 
 public class FragmentDetalle extends Fragment {
+    public static final String EXTRA_CONTACTO = "com.germangascom.fragments.EXTRA_CONTACTO";
     private TextView tvName;
     private TextView tvSurnames;
     private TextView tvBirth;
@@ -18,10 +19,19 @@ public class FragmentDetalle extends Fragment {
     private TextView tvPhone2;
     private TextView tvEmail;
     private final StringBuilder sb;
+    private Contacto contacto;
 
     public FragmentDetalle() {
         super(R.layout.fragment_detalle);
         sb = new StringBuilder();
+        contacto = null;
+    }
+
+    @Override
+    public void onCreate(@Nullable Bundle savedInstanceState) {
+        super.onCreate(savedInstanceState);
+        if(getArguments() != null)
+            contacto = (Contacto)getArguments().getSerializable(EXTRA_CONTACTO);
     }
 
     @Override
@@ -35,6 +45,8 @@ public class FragmentDetalle extends Fragment {
         tvPhone1 = view.findViewById(R.id.tvPhone1);
         tvPhone2 = view.findViewById(R.id.tvPhone2);
         tvEmail = view.findViewById(R.id.tvEmail);
+        if(contacto != null)
+            mostrarDetalle(contacto);
     }
 
     public void mostrarDetalle(Contacto contacto) {

@@ -8,8 +8,8 @@ import android.view.ViewGroup;
 import android.widget.TextView;
 
 public class AdaptadorContactos extends RecyclerView.Adapter<AdaptadorContactos.ContactosViewHolder> {
-    private Contacto[] datos;
-    private IContactosListener listener;
+    private final Contacto[] datos;
+    private final IContactosListener listener;
 
     public AdaptadorContactos(Contacto[] datos, IContactosListener listener) {
         this.datos = datos;
@@ -35,10 +35,10 @@ public class AdaptadorContactos extends RecyclerView.Adapter<AdaptadorContactos.
     }
 
     public static class ContactosViewHolder extends RecyclerView.ViewHolder implements View.OnClickListener {
-        private TextView tvName;
-        private TextView tvPhone1;
-        private StringBuilder sb;
-        private IContactosListener listener;
+        private final TextView tvName;
+        private final TextView tvPhone1;
+        private final StringBuilder sb;
+        private final IContactosListener listener;
 
         public ContactosViewHolder(@NonNull View itemView, IContactosListener listener) {
             super(itemView);

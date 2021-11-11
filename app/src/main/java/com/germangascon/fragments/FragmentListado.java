@@ -1,7 +1,6 @@
 package com.germangascon.fragments;
 
 import android.os.Bundle;
-
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
 import androidx.fragment.app.Fragment;
@@ -20,16 +19,14 @@ public class FragmentListado extends Fragment {
     @Override
     public void onViewCreated(@NonNull View view, @Nullable Bundle savedInstanceState) {
         super.onViewCreated(view, savedInstanceState);
-        ContactParser parser = new ContactParser(requireContext());
-        if(parser.parse()) {
-            this.datos = parser.getContactos();
-        }
+        assert datos != null && listener != null;
         RecyclerView rvListado = view.findViewById(R.id.rvListado);
         rvListado.setAdapter(new AdaptadorContactos(datos, listener));
         rvListado.setLayoutManager(new LinearLayoutManager(getActivity(), LinearLayoutManager.VERTICAL, false));
     }
 
-    public void setContactosListener(IContactosListener listener) {
+    public void setContactosListener(Contacto[] contactos, IContactosListener listener) {
+        this.datos = contactos;
         this.listener = listener;
     }
 

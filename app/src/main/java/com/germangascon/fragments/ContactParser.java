@@ -16,7 +16,7 @@ public class ContactParser {
     /** Array que contendrá los objetos Contacto */
     private Contacto[] contactos;
     /** InputStream para poder leer del archivo contacts.json */
-    private InputStream contactsFile;
+    private final InputStream contactsFile;
 
     /** Al constructor le pasamos el contexto para que pueda tener acceso a los recursos de la aplicación */
     public ContactParser(Context c) {

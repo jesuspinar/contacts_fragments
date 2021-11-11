@@ -21,14 +21,15 @@ public class DetalleActivity extends AppCompatActivity {
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        Contacto contacto = (Contacto) Objects.requireNonNull(getIntent().getSerializableExtra(EXTRA_TEXTO));
-        FragmentOnAttachListener listener = new FragmentOnAttachListener() {
-            @Override
-            public void onAttachFragment(@NonNull FragmentManager fragmentManager, @NonNull Fragment fragment) {
-                if(fragment.getId() == R.id.FrgDetalle) {
-                    ((FragmentDetalle)(fragment)).mostrarDetalle(contacto);
-                }
-            }
-        };
+        if(savedInstanceState == null) {
+            Contacto contacto = (Contacto) Objects.requireNonNull(getIntent().getSerializableExtra(EXTRA_TEXTO));
+            Bundle bundle = new Bundle();
+            bundle.putSerializable(FragmentDetalle.EXTRA_CONTACTO, contacto);
+            FragmentManager manager = getSupportFragmentManager();
+            manager.beginTransaction()
+                    .setReorderingAllowed(true)
+                    .add(R.id.FrgDetalle, FragmentDetalle.class, bundle)
+                    .commit();
+        }
     }
 }
