@@ -29,9 +29,5 @@ public class FragmentListado extends Fragment {
         this.datos = contactos;
         this.listener = listener;
     }
-
-    public Contacto[] getDatos() {
-        return datos;
-    }
 }
 

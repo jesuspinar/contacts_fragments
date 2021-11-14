@@ -45,7 +45,7 @@ public class MainActivity extends AppCompatActivity implements IContactosListene
 
     @Override
     public void onContactoSeleccionado(int position) {
-        Contacto contacto = frgListado.getDatos()[position];
+        Contacto contacto = contactos[position];
         if(tabletLayout) {
             frgDetalle.mostrarDetalle(contacto);
         } else {
