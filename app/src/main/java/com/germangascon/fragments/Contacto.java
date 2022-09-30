@@ -4,16 +4,16 @@ import java.io.Serializable;
 
 public class Contacto implements Serializable {
     private final int id;
-    private String name;
-    private String firstSurname;
-    private String secondSurname;
-    private String photo;
-    private String birth;
-    private String company;
-    private String email;
-    private String phone1;
-    private String phone2;
-    private String address;
+    private final String name;
+    private final String firstSurname;
+    private final String secondSurname;
+    private final String photo;
+    private final String birth;
+    private final String company;
+    private final String email;
+    private final String phone1;
+    private final String phone2;
+    private final String address;
 
 
     public Contacto(int id, String name, String firstSurname, String secondSurname, String photo,
