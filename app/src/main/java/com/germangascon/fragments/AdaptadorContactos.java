@@ -9,9 +9,9 @@ import android.widget.TextView;
 
 public class AdaptadorContactos extends RecyclerView.Adapter<AdaptadorContactos.ContactosViewHolder> {
     private final Contacto[] datos;
-    private final IContactosListener listener;
+    private final IClickListener listener;
 
-    public AdaptadorContactos(Contacto[] datos, IContactosListener listener) {
+    public AdaptadorContactos(Contacto[] datos, IClickListener listener) {
         this.datos = datos;
         this.listener = listener;
     }
@@ -38,9 +38,9 @@ public class AdaptadorContactos extends RecyclerView.Adapter<AdaptadorContactos.
         private final TextView tvName;
         private final TextView tvPhone1;
         private final StringBuilder sb;
-        private final IContactosListener listener;
+        private final IClickListener listener;
 
-        public ContactosViewHolder(@NonNull View itemView, IContactosListener listener) {
+        public ContactosViewHolder(@NonNull View itemView, IClickListener listener) {
             super(itemView);
             tvName = itemView.findViewById(R.id.tvName);
             tvPhone1 = itemView.findViewById(R.id.tvPhone1);
@@ -59,7 +59,7 @@ public class AdaptadorContactos extends RecyclerView.Adapter<AdaptadorContactos.
         @Override
         public void onClick(View v) {
             if(listener != null) {
-                listener.onContactoSeleccionado(getAdapterPosition());
+                listener.onClick(getAdapterPosition());
             }
         }
     }

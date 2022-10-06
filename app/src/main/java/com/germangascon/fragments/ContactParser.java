@@ -20,7 +20,7 @@ public class ContactParser {
 
     /** Al constructor le pasamos el contexto para que pueda tener acceso a los recursos de la aplicación */
     public ContactParser(Context c) {
-        /** Obtenemos una referencia al archivo /res/raw/contact.json */
+        /* Obtenemos una referencia al archivo /res/raw/contact.json */
         this.contactsFile = c.getResources().openRawResource(R.raw.contacts);
     }
 
@@ -30,10 +30,10 @@ public class ContactParser {
      * @return boolean Devuelve verdadero si ha ido bien. False en caso contrario.
      */
     public boolean parse() {
-        /** Parsed controla si se han podido parsear los datos. Inicialmente a false */
+        /* Parsed controla si se han podido parsear los datos. Inicialmente a false */
         boolean parsed = false;
         String json = null;
-        /** Inicializamos a null el array de contactos */
+        /* Inicializamos a null el array de contactos */
         contactos = null;
         try {
             int size = contactsFile.available();
@@ -43,7 +43,7 @@ public class ContactParser {
             json = new String(buffer, "UTF-8");
             JSONTokener tokener = new JSONTokener(json);
             JSONArray jsonArray = new JSONArray(tokener);
-            /** Inicializamos el array con el tamaño del array en el JSON */
+            /* Inicializamos el array con el tamaño del array en el JSON */
             contactos = new Contacto[jsonArray.length()];
             for(int i = 0; i < jsonArray.length(); i++) {
                 JSONObject jsonObject = jsonArray.getJSONObject(i);
@@ -61,7 +61,7 @@ public class ContactParser {
                 contactos[i] = new Contacto(id, name, firstSurname, secondSurname, photo, birth, company, email, phone1, phone2, address);
             }
 
-            /** Si hemos llegado hasta aquí, podemos asegurar que el documento json ha sido parseado correctamente */
+            /* Si hemos llegado hasta aquí, podemos asegurar que el documento json ha sido parseado correctamente */
             parsed = true;
         } catch (Exception e) {
             Log.e("CountryParser", "Unknown Exception: "+e.getLocalizedMessage());

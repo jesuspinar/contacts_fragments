@@ -9,7 +9,7 @@ import androidx.fragment.app.Fragment;
 import androidx.fragment.app.FragmentManager;
 import androidx.fragment.app.FragmentOnAttachListener;
 
-public class MainActivity extends AppCompatActivity implements IContactosListener, FragmentOnAttachListener {
+public class MainActivity extends AppCompatActivity implements IClickListener, FragmentOnAttachListener {
     private FragmentListado frgListado;
     private FragmentDetalle frgDetalle;
     private boolean tabletLayout;
@@ -44,7 +44,7 @@ public class MainActivity extends AppCompatActivity implements IContactosListene
     }
 
     @Override
-    public void onContactoSeleccionado(int position) {
+    public void onClick(int position) {
         Contacto contacto = contactos[position];
         if(tabletLayout) {
             frgDetalle.mostrarDetalle(contacto);

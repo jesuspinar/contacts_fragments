@@ -10,7 +10,7 @@ import android.view.View;
 
 public class FragmentListado extends Fragment {
     private Contacto[] datos;
-    private IContactosListener listener;
+    private IClickListener listener;
 
     public FragmentListado() {
         super(R.layout.fragment_listado);
@@ -25,7 +25,7 @@ public class FragmentListado extends Fragment {
         rvListado.setLayoutManager(new LinearLayoutManager(getActivity(), LinearLayoutManager.VERTICAL, false));
     }
 
-    public void setContactosListener(Contacto[] contactos, IContactosListener listener) {
+    public void setContactosListener(Contacto[] contactos, IClickListener listener) {
         this.datos = contactos;
         this.listener = listener;
     }
