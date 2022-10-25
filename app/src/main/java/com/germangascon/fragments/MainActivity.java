@@ -10,6 +10,7 @@ import androidx.fragment.app.FragmentManager;
 import androidx.fragment.app.FragmentOnAttachListener;
 
 public class MainActivity extends AppCompatActivity implements IClickListener, FragmentOnAttachListener {
+    private final static String KEY_CONTACTOS = "com.germangascon.fragments.contactos";
     private FragmentListado frgListado;
     private boolean tabletLayout;
     private Contacto[] contactos;
@@ -25,12 +26,11 @@ public class MainActivity extends AppCompatActivity implements IClickListener, F
         super.onCreate(savedInstanceState);
         tabletLayout = findViewById(R.id.FrgDetalle) != null;
 
-        ContactParser parser = new ContactParser(this);
-        if(parser.parse()) {
-            this.contactos = parser.getContactos();
-        }
-
         if(savedInstanceState == null) {
+            ContactParser parser = new ContactParser(this);
+            if(parser.parse()) {
+                this.contactos = parser.getContactos();
+            }
             FragmentManager manager = getSupportFragmentManager();
             manager.beginTransaction()
                     .setReorderingAllowed(true)
@@ -39,10 +39,17 @@ public class MainActivity extends AppCompatActivity implements IClickListener, F
 
             manager.addFragmentOnAttachListener(this);
         } else {
+            contactos = (Contacto[]) savedInstanceState.getSerializable(KEY_CONTACTOS);
             frgListado = (FragmentListado) getSupportFragmentManager().findFragmentById(R.id.FrgListado);
             if (frgListado != null)
                 frgListado.setContactosListener(contactos, this);
         }
+    }
+
+    @Override
+    protected void onSaveInstanceState(@NonNull Bundle outState) {
+        super.onSaveInstanceState(outState);
+        outState.putSerializable(KEY_CONTACTOS, contactos);
     }
 
     @Override
