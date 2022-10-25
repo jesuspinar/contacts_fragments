@@ -9,10 +9,13 @@ import android.widget.TextView;
 
 public class AdaptadorContactos extends RecyclerView.Adapter<AdaptadorContactos.ContactosViewHolder> {
     private final Contacto[] datos;
-    private final IClickListener listener;
+    private IClickListener listener;
 
-    public AdaptadorContactos(Contacto[] datos, IClickListener listener) {
+    public AdaptadorContactos(Contacto[] datos) {
         this.datos = datos;
+    }
+
+    public void setListener(IClickListener listener) {
         this.listener = listener;
     }
 
@@ -20,7 +23,7 @@ public class AdaptadorContactos extends RecyclerView.Adapter<AdaptadorContactos.
     @Override
     public ContactosViewHolder onCreateViewHolder(@NonNull ViewGroup viewGroup, int i) {
         final View itemView = LayoutInflater.from(viewGroup.getContext()).inflate(R.layout.item_contacto, viewGroup, false);
-        return new ContactosViewHolder(itemView, listener);
+        return new ContactosViewHolder(itemView);
     }
 
     @Override
@@ -34,18 +37,16 @@ public class AdaptadorContactos extends RecyclerView.Adapter<AdaptadorContactos.
         return datos.length;
     }
 
-    public static class ContactosViewHolder extends RecyclerView.ViewHolder implements View.OnClickListener {
+    public class ContactosViewHolder extends RecyclerView.ViewHolder implements View.OnClickListener {
         private final TextView tvName;
         private final TextView tvPhone1;
         private final StringBuilder sb;
-        private final IClickListener listener;
 
-        public ContactosViewHolder(@NonNull View itemView, IClickListener listener) {
+        public ContactosViewHolder(@NonNull View itemView) {
             super(itemView);
             tvName = itemView.findViewById(R.id.tvName);
             tvPhone1 = itemView.findViewById(R.id.tvPhone1);
             sb = new StringBuilder();
-            this.listener = listener;
             itemView.setOnClickListener(this);
         }
 

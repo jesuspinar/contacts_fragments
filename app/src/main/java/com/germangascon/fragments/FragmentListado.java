@@ -19,9 +19,10 @@ public class FragmentListado extends Fragment {
     @Override
     public void onViewCreated(@NonNull View view, @Nullable Bundle savedInstanceState) {
         super.onViewCreated(view, savedInstanceState);
-        assert datos != null && listener != null;
         RecyclerView rvListado = view.findViewById(R.id.rvListado);
-        rvListado.setAdapter(new AdaptadorContactos(datos, listener));
+        AdaptadorContactos adaptador = new AdaptadorContactos(datos);
+        adaptador.setListener(listener);
+        rvListado.setAdapter(adaptador);
         rvListado.setLayoutManager(new LinearLayoutManager(getActivity(), LinearLayoutManager.VERTICAL, false));
     }
 

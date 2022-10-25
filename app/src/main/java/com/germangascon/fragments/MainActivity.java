@@ -11,14 +11,12 @@ import androidx.fragment.app.FragmentOnAttachListener;
 
 public class MainActivity extends AppCompatActivity implements IClickListener, FragmentOnAttachListener {
     private FragmentListado frgListado;
-    private FragmentDetalle frgDetalle;
     private boolean tabletLayout;
     private Contacto[] contactos;
 
     public MainActivity() {
         super(R.layout.activity_main);
         frgListado = null;
-        frgDetalle = null;
         tabletLayout = false;
     }
 
@@ -36,10 +34,14 @@ public class MainActivity extends AppCompatActivity implements IClickListener, F
             FragmentManager manager = getSupportFragmentManager();
             manager.beginTransaction()
                     .setReorderingAllowed(true)
-                    .add(R.id.FrgListado, FragmentListado.class, null)
+                    .replace(R.id.FrgListado, FragmentListado.class, null)
                     .commit();
 
             manager.addFragmentOnAttachListener(this);
+        } else {
+            frgListado = (FragmentListado) getSupportFragmentManager().findFragmentById(R.id.FrgListado);
+            if (frgListado != null)
+                frgListado.setContactosListener(contactos, this);
         }
     }
 
@@ -47,7 +49,7 @@ public class MainActivity extends AppCompatActivity implements IClickListener, F
     public void onClick(int position) {
         Contacto contacto = contactos[position];
         if(tabletLayout) {
-            frgDetalle.mostrarDetalle(contacto);
+            ((FragmentDetalle)getSupportFragmentManager().findFragmentById(R.id.FrgDetalle)).mostrarDetalle(contactos[position]);
         } else {
             Intent i = new Intent(this, DetalleActivity.class);
             i.putExtra(DetalleActivity.EXTRA_TEXTO, contacto);
@@ -66,13 +68,9 @@ public class MainActivity extends AppCompatActivity implements IClickListener, F
                 FragmentManager manager = getSupportFragmentManager();
                 manager.beginTransaction()
                         .setReorderingAllowed(true)
-                        .add(R.id.FrgDetalle, FragmentDetalle.class, bundle)
+                        .replace(R.id.FrgDetalle, FragmentDetalle.class, bundle)
                         .commit();
-
             }
-        }
-        if(fragment.getId() == R.id.FrgDetalle) {
-            frgDetalle = (FragmentDetalle) fragment;
         }
     }
 }
