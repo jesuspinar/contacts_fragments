@@ -1,7 +1,10 @@
-package com.germangascon.fragments;
+package com.jesuspinar.contacts.controller;
 
 import android.content.Context;
 import android.util.Log;
+
+import com.jesuspinar.contacts.model.Contact;
+import com.jesuspinar.fragments.R;
 
 import org.json.JSONArray;
 import org.json.JSONObject;
@@ -14,7 +17,7 @@ import java.io.InputStream;
  */
 public class ContactParser {
     /** Array que contendrá los objetos Contacto */
-    private Contacto[] contactos;
+    private Contact[] contactos;
     /** InputStream para poder leer del archivo contacts.json */
     private final InputStream contactsFile;
 
@@ -44,7 +47,7 @@ public class ContactParser {
             JSONTokener tokener = new JSONTokener(json);
             JSONArray jsonArray = new JSONArray(tokener);
             /* Inicializamos el array con el tamaño del array en el JSON */
-            contactos = new Contacto[jsonArray.length()];
+            contactos = new Contact[jsonArray.length()];
             for(int i = 0; i < jsonArray.length(); i++) {
                 JSONObject jsonObject = jsonArray.getJSONObject(i);
                 int id = jsonObject.getInt("id");
@@ -58,7 +61,7 @@ public class ContactParser {
                 String phone1 = jsonObject.getString("phone1");
                 String phone2 = jsonObject.getString("phone2");
                 String address = jsonObject.getString("address");
-                contactos[i] = new Contacto(id, name, firstSurname, secondSurname, photo, birth, company, email, phone1, phone2, address);
+                contactos[i] = new Contact(id, name, firstSurname, secondSurname, photo, birth, company, email, phone1, phone2, address);
             }
 
             /* Si hemos llegado hasta aquí, podemos asegurar que el documento json ha sido parseado correctamente */
@@ -73,7 +76,7 @@ public class ContactParser {
      * Devuelve la lista de contactos
      * @return Contacto[]
      */
-    public Contacto[] getContactos() {
+    public Contact[] getContactos() {
         return this.contactos;
     }
 

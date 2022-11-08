@@ -1,8 +1,8 @@
-package com.germangascon.fragments;
+package com.jesuspinar.contacts.model;
 
 import java.io.Serializable;
 
-public class Contacto implements Serializable {
+public class Contact implements Serializable {
     private final int id;
     private final String name;
     private final String firstSurname;
@@ -16,8 +16,8 @@ public class Contacto implements Serializable {
     private final String address;
 
 
-    public Contacto(int id, String name, String firstSurname, String secondSurname, String photo,
-                    String birth, String company, String email, String phone1, String phone2, String address) {
+    public Contact(int id, String name, String firstSurname, String secondSurname, String photo,
+                   String birth, String company, String email, String phone1, String phone2, String address) {
         this.id = id;
         this.name = name;
         this.firstSurname = firstSurname;

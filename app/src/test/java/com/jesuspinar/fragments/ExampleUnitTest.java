@@ -1,4 +1,4 @@
-package com.germangascon.fragments;
+package com.jesuspinar.fragments;
 
 import org.junit.Test;
 

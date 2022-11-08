@@ -6,13 +6,14 @@
     android:layout_height="match_parent">
 
     <androidx.fragment.app.FragmentContainerView
-        android:id="@+id/FrgListado"
+        android:id="@+id/frgListado"
         android:layout_width="match_parent"
         android:layout_height="0dp"
         android:layout_weight="40" />
 
     <androidx.fragment.app.FragmentContainerView
-        android:id="@+id/FrgDetalle"
+        android:id="@+id/frgDetalle"
+        android:name="com.jesuspinar.contacts.fragments.FragmentDetail"
         android:layout_width="match_parent"
         android:layout_height="0dp"
         android:layout_weight="60" />

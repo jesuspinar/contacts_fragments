@@ -3,7 +3,7 @@ apply plugin: 'com.android.application'
 android {
     compileSdkVersion 32
     defaultConfig {
-        applicationId "com.germangascon.fragments"
+        applicationId "com.jesuspinar.fragments"
         minSdkVersion 15
         targetSdkVersion 32
         versionCode 1
@@ -16,7 +16,7 @@ android {
             proguardFiles getDefaultProguardFile('proguard-android.txt'), 'proguard-rules.pro'
         }
     }
-    namespace 'com.germangascon.fragments'
+    namespace 'com.jesuspinar.fragments'
 }
 
 dependencies {

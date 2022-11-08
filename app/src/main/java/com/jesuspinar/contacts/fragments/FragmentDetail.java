@@ -1,6 +1,7 @@
-package com.germangascon.fragments;
+package com.jesuspinar.contacts.fragments;
 
 
+import android.content.Context;
 import android.os.Bundle;
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
@@ -8,8 +9,15 @@ import androidx.fragment.app.Fragment;
 import android.view.View;
 import android.widget.TextView;
 
-public class FragmentDetalle extends Fragment {
-    public static final String EXTRA_CONTACTO = "com.germangascom.fragments.EXTRA_CONTACTO";
+import com.jesuspinar.contacts.model.Contact;
+import com.jesuspinar.fragments.R;
+
+public class FragmentDetail extends Fragment {
+
+    public interface IOnAttachListener {
+        Contact getContact();
+    }
+
     private TextView tvName;
     private TextView tvSurnames;
     private TextView tvBirth;
@@ -19,24 +27,19 @@ public class FragmentDetalle extends Fragment {
     private TextView tvPhone2;
     private TextView tvEmail;
     private final StringBuilder sb;
-    private Contacto contacto;
+    private Contact contact;
 
-    public FragmentDetalle() {
+    public FragmentDetail() {
         super(R.layout.fragment_detalle);
         sb = new StringBuilder();
-        contacto = null;
+        contact = null;
     }
 
-    @Override
-    public void onCreate(@Nullable Bundle savedInstanceState) {
-        super.onCreate(savedInstanceState);
-        if(getArguments() != null)
-            contacto = (Contacto)getArguments().getSerializable(EXTRA_CONTACTO);
-    }
 
     @Override
     public void onViewCreated(@NonNull View view, @Nullable Bundle savedInstanceState) {
         super.onViewCreated(view, savedInstanceState);
+
         tvName = view.findViewById(R.id.tvName);
         tvSurnames = view.findViewById(R.id.tvSurnames);
         tvBirth = view.findViewById(R.id.tvBirth);
@@ -45,20 +48,27 @@ public class FragmentDetalle extends Fragment {
         tvPhone1 = view.findViewById(R.id.tvPhone1);
         tvPhone2 = view.findViewById(R.id.tvPhone2);
         tvEmail = view.findViewById(R.id.tvEmail);
-        if(contacto != null)
-            mostrarDetalle(contacto);
+        if(contact != null)
+            displayDetail(contact);
     }
 
-    public void mostrarDetalle(Contacto contacto) {
-        tvName.setText(contacto.getName());
+    @Override
+    public void onAttach(@NonNull Context context) {
+        super.onAttach(context);
+        IOnAttachListener attachListener = (IOnAttachListener) context;
+        contact = attachListener.getContact();
+    }
+
+    public void displayDetail(Contact contact) {
+        tvName.setText(contact.getName());
         sb.setLength(0);
-        sb.append(contacto.getName()).append(" ").append(contacto.getFirstSurname());
+        sb.append(contact.getFirstSurname()).append(" ").append(contact.getSecondSurname());
         tvSurnames.setText(sb.toString());
-        tvBirth.setText(contacto.getBirth());
-        tvCompany.setText(contacto.getCompany());
-        tvAddress.setText(contacto.getAddress());
-        tvPhone1.setText(contacto.getPhone1());
-        tvPhone2.setText(contacto.getPhone2());
-        tvEmail.setText(contacto.getEmail());
+        tvBirth.setText(contact.getBirth());
+        tvCompany.setText(contact.getCompany());
+        tvAddress.setText(contact.getAddress());
+        tvPhone1.setText(contact.getPhone1());
+        tvPhone2.setText(contact.getPhone2());
+        tvEmail.setText(contact.getEmail());
     }
 }

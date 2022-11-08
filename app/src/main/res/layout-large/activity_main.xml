@@ -7,13 +7,15 @@
     android:baselineAligned="false">
 
     <androidx.fragment.app.FragmentContainerView
-        android:id="@+id/FrgListado"
+        android:id="@+id/frgListado"
+        android:name="com.jesuspinar.contacts.fragments.FragmentList"
         android:layout_width="0dp"
         android:layout_height="match_parent"
         android:layout_weight="30" />
 
     <androidx.fragment.app.FragmentContainerView
-        android:id="@+id/FrgDetalle"
+        android:id="@+id/frgDetalle"
+        android:name="com.jesuspinar.contacts.fragments.FragmentDetail"
         android:layout_width="0dp"
         android:layout_height="match_parent"
         android:layout_weight="70" />
